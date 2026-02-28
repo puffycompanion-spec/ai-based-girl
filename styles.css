@@ -122,8 +122,10 @@ section { padding: 100px 48px; }
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 24px; }
 
 /* ===== PROJECT CARD ===== */
-.project-card { background: var(--card); border: 1px solid var(--sand); border-radius: 14px; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
-.project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.35); }
+.project-card { background: var(--card); border: 1px solid var(--sand); border-radius: 14px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; display: flex; flex-direction: column; position: relative; }
+.project-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--terracotta), var(--highlight)); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; z-index: 1; border-radius: 14px 14px 0 0; }
+.project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.35); border-color: rgba(212,133,94,0.2); }
+.project-card:hover::before { transform: scaleX(1); }
 .project-img-wrap { position: relative; overflow: hidden; height: 220px; background: var(--cream); }
 .project-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
 .project-card:hover .project-img-wrap img { transform: scale(1.05); }
@@ -142,8 +144,8 @@ section { padding: 100px 48px; }
 .project-impact::before { content: "→ "; }
 .project-tech { display: flex; flex-wrap: wrap; gap: 5px; }
 .tech-tag { font-size: 10px; font-family: "DM Mono", monospace; color: var(--light-mid); background: var(--cream); padding: 2px 7px; border-radius: 3px; }
-.project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--terracotta); font-weight: 600; text-decoration: none; margin-top: 12px; transition: gap 0.2s; }
-.project-link:hover { gap: 10px; }
+.project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--terracotta); font-weight: 600; text-decoration: none; margin-top: 12px; transition: gap 0.2s, color 0.2s; }
+.project-link:hover { gap: 10px; color: var(--highlight); }
 
 /* ===== SOCIAL SECTION ===== */
 .social-section { background: var(--warm-white); }
