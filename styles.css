@@ -261,6 +261,7 @@ body.lang-tr .block-en{display:none}
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .skill-categories { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); }
 }
 
 @media (max-width: 900px) {
@@ -269,24 +270,44 @@ body.lang-tr .block-en{display:none}
     .edge-grid { grid-template-columns: 1fr; }
     section { padding: 64px 24px; }
     .lang-bar { padding: 14px 24px; }
+    .lang-bar.scrolled { padding: 10px 24px; }
     .nav-links { display: none; }
     .nav-hamburger { display: block; }
     .pillars-grid { grid-template-columns: 1fr 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
     .divider { margin: 0 24px; }
     .footer { flex-direction: column; gap: 8px; text-align: center; }
+    .social-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
     .hero { padding: 90px 16px 40px; }
     section { padding: 48px 16px; }
     .lang-bar { padding: 12px 16px; }
+    .lang-bar.scrolled { padding: 8px 16px; }
     .divider { margin: 0 16px; }
     .pillars-grid { grid-template-columns: 1fr; }
     .contact-links { flex-direction: column; align-items: center; }
     .why-grid { grid-template-columns: 1fr; }
     .footer { padding: 16px; }
+    .hero-ctas { flex-direction: column; }
+    .hero-ctas .btn-primary, .hero-ctas .btn-secondary { width: 100%; justify-content: center; }
+    .project-filters { gap: 6px; }
+    .filter-btn { padding: 6px 14px; font-size: 12px; }
 }
+
+/* ===== ACCESSIBILITY: FOCUS STATES ===== */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; border-radius: 4px; }
+.lang-btn:focus-visible { outline-offset: 1px; }
+.nav-links a:focus-visible { outline-offset: 6px; }
+.filter-btn:focus-visible { outline-offset: 2px; }
+:focus:not(:focus-visible) { outline: none; }
+
+/* ===== SMOOTH SCROLL target offset ===== */
+:target { scroll-margin-top: 80px; }
+
+/* ===== SELECTION COLOR ===== */
+::selection { background: rgba(212,133,94,0.3); color: var(--ink); }
 
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
