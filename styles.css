@@ -314,3 +314,309 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--terracotta); ou
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
     .timeline-item { opacity: 1; transform: none; }
 }
+
+/* ========================================================================
+   PRINT / PDF STYLESHEET
+   — Dark tema → açık print paleti
+   — Sabit elemanlar & animasyonlar kaldırılır
+   — Sayfa kırılma (page-break) kuralları eklenir
+   ======================================================================== */
+@media print {
+
+    /* ---------- OVERRIDE: CSS VARIABLES → PRINT-SAFE LIGHT PALETTE ---------- */
+    :root {
+        --cream: #F5F0E8;
+        --warm-white: #FFFFFF;
+        --sand: #D8CFC0;
+        --card: #FFFFFF;
+        --card-hover: #FFFFFF;
+        --terracotta: #B85C38;
+        --terracotta-dark: #9A4A2A;
+        --burnt: #8B4513;
+        --highlight: #C4714A;
+        --charcoal: #1A1410;
+        --mid: #3E3428;
+        --light-mid: #6B5D4E;
+        --muted: #A89880;
+        --ink: #0F0D0A;
+        --deep: #FFFFFF;
+        --deep-surface: #F8F6F2;
+    }
+
+    /* ---------- GLOBAL RESET ---------- */
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    body {
+        background: #fff !important;
+        color: #1A1410 !important;
+        font-size: 11pt;
+        line-height: 1.5;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* ---------- PAGE SETTINGS ---------- */
+    @page {
+        size: A4;
+        margin: 15mm 12mm;
+    }
+
+    /* ---------- HIDE NON-PRINT ELEMENTS ---------- */
+    .lang-bar,
+    .nav-hamburger,
+    .mobile-drawer,
+    .drawer-overlay,
+    .hero-ctas,
+    .project-filters,
+    .filter-btn,
+    .lang-toggle,
+    .cv-download-btn,
+    .btn-primary,
+    .btn-secondary,
+    .contact-link.primary {
+        display: none !important;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+        padding: 24px 0 !important;
+        background: #fff !important;
+        page-break-inside: auto;
+    }
+    .story-section,
+    .projects-section,
+    .cv-section,
+    .social-section,
+    .philosophy-section,
+    .contact-section {
+        background: #fff !important;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+        min-height: auto !important;
+        padding: 20px 0 !important;
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+    .hero::before, .hero::after { display: none !important; }
+
+    /* ---------- TYPOGRAPHY FIX ---------- */
+    .hero-title, .section-title, .cv-section-header,
+    .timeline-heading, .project-title, .cv-name {
+        color: #0F0D0A !important;
+    }
+    .hero-title .accent, .section-title .italic {
+        color: #B85C38 !important;
+    }
+    .section-label {
+        color: #B85C38 !important;
+    }
+    .hero-desc, .section-intro, .why-body, .project-desc,
+    .timeline-body, .edge-body, .pillar-body, .cv-summary,
+    .social-card-body {
+        color: #3E3428 !important;
+    }
+
+    /* ---------- CARDS → BORDERED WHITE ---------- */
+    .stat-card, .why-card, .project-card, .edge-item,
+    .social-card, .cv-skills-block, .cv-intro-block {
+        background: #fff !important;
+        border: 1px solid #D8CFC0 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    /* Remove hover-only pseudo borders */
+    .project-card::before, .why-card::before { display: none !important; }
+
+    /* ---------- GRIDS → PRINT-FRIENDLY COLUMNS ---------- */
+    .cv-layout {
+        grid-template-columns: 1fr 2fr !important;
+        gap: 20px;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px;
+    }
+    .why-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px;
+    }
+    .edge-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px;
+    }
+    .pillars-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        border: 1px solid #D8CFC0 !important;
+    }
+    .pillar {
+        background: #F8F6F2 !important;
+        border-right: 1px solid #D8CFC0 !important;
+    }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline::before {
+        background: #D8CFC0 !important;
+    }
+    .timeline-item {
+        opacity: 1 !important;
+        transform: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    .timeline-dot {
+        background: #fff !important;
+        border-color: #B85C38 !important;
+        box-shadow: none !important;
+    }
+    .timeline-outcome {
+        background: #F5F0E8 !important;
+        border-left-color: #B85C38 !important;
+        color: #8B4513 !important;
+    }
+
+    /* ---------- PROJECT CARDS ---------- */
+    .project-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    .project-img-wrap, .project-img-multi, .noorbloom-gallery {
+        height: 140px !important;
+    }
+    .project-badge {
+        background: #B85C38 !important;
+        color: #fff !important;
+    }
+    .project-impact {
+        background: #F5F0E8 !important;
+        color: #8B4513 !important;
+    }
+    .role-chip {
+        background: #F5F0E8 !important;
+        border-color: #D8CFC0 !important;
+        color: #8B4513 !important;
+    }
+    .tech-tag {
+        background: #F5F0E8 !important;
+        color: #6B5D4E !important;
+    }
+
+    /* ---------- CV SECTION ---------- */
+    .cv-intro-block {
+        background: #1A1410 !important;
+        color: #F0EAE0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .cv-intro-block .cv-name { color: #fff !important; }
+    .cv-intro-block .cv-headline { color: #D4956A !important; }
+    .cv-intro-block .cv-summary { color: rgba(255,255,255,0.8) !important; }
+    .cv-exp-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border-left-color: #D8CFC0 !important;
+    }
+    .cv-exp-item::before {
+        background: #B85C38 !important;
+        border-color: #fff !important;
+    }
+    .dot { background: #D8CFC0 !important; }
+    .dot.filled { background: #B85C38 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    /* ---------- PHILOSOPHY SECTION ---------- */
+    .philosophy-section {
+        background: #F8F6F2 !important;
+        color: #1A1410 !important;
+    }
+    .philosophy-section .section-title { color: #0F0D0A !important; }
+    .philosophy-section .section-label { color: #B85C38 !important; }
+    .philosophy-section .italic { color: #B85C38 !important; }
+    .pillar-title { color: #1A1410 !important; }
+    .pillar-body { color: #6B5D4E !important; }
+
+    /* ---------- CONTACT SECTION ---------- */
+    .contact-section {
+        background: #F8F6F2 !important;
+        color: #1A1410 !important;
+    }
+    .contact-quote { color: #0F0D0A !important; }
+    .contact-sub { color: #6B5D4E !important; }
+    .contact-links { display: flex !important; }
+    .contact-link {
+        border: 1px solid #D8CFC0 !important;
+        color: #1A1410 !important;
+        background: #fff !important;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+        background: #fff !important;
+        border-top: 1px solid #D8CFC0 !important;
+    }
+    .footer-name { color: #3E3428 !important; }
+    .footer-copy { color: #6B5D4E !important; }
+
+    /* ---------- DIVIDER ---------- */
+    .divider {
+        background: #D8CFC0 !important;
+        margin: 8px 0 !important;
+    }
+
+    /* ---------- EXPERTISE SECTION (inline-styled) ---------- */
+    [id="expertise"] {
+        background: #F8F6F2 !important;
+    }
+    [id="expertise"] div[style*="color:var(--highlight)"] {
+        color: #B85C38 !important;
+    }
+    [id="expertise"] div[style*="color:white"] {
+        color: #1A1410 !important;
+    }
+
+    /* ---------- INLINE STYLED DARK CARDS IN HTML ---------- */
+    div[style*="background:var(--card)"] {
+        background: #fff !important;
+        border: 1px solid #D8CFC0 !important;
+    }
+    div[style*="background:var(--deep-surface)"] {
+        background: #F8F6F2 !important;
+    }
+    div[style*="background:var(--cream)"] {
+        background: #F5F0E8 !important;
+    }
+
+    /* ---------- LINKS: SHOW URL ---------- */
+    .project-link::after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        color: #6B5D4E;
+        font-weight: 400;
+    }
+
+    /* ---------- PAGE BREAK HELPERS ---------- */
+    h1, h2, h3, .section-title, .cv-section-header {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    .hero-visual { display: none !important; }
+
+    /* ---------- TAG COLORS ---------- */
+    .tag {
+        background: #F5F0E8 !important;
+        color: #3E3428 !important;
+        border: 1px solid #D8CFC0 !important;
+    }
+    .hero-eyebrow {
+        background: #F5F0E8 !important;
+        border-color: #D8CFC0 !important;
+        color: #B85C38 !important;
+    }
+}
