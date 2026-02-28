@@ -1,0 +1,56 @@
+# ====================================================================
+# AI Learning Journey - Project Dependencies
+# Natural Language Processing & Machine Learning
+# ====================================================================
+
+# Core Data Science Stack
+pandas>=1.3.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+scipy>=1.7.0
+
+# Natural Language Processing
+nltk>=3.6.0
+textblob>=0.17.0
+neattext>=0.1.0
+langdetect>=1.0.9
+
+# Deep Learning & Neural Networks
+tensorflow>=2.8.0
+keras>=2.8.0
+
+# Data I/O & File Processing
+docx2txt>=0.8
+PyPDF2>=1.26.0
+wikipedia>=1.4.0
+joblib>=1.1.0
+
+# Visualization & Plotting
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# Jupyter Environment
+jupyter>=1.0.0
+jupyterlab>=3.0.0
+ipython>=7.0.0
+
+# Development Tools
+pytest>=6.0.0
+black>=21.0.0
+flake8>=3.9.0
+
+# ====================================================================
+# Installation Instructions:
+# ====================================================================
+# 
+# 1. Create a virtual environment:
+#    python -m venv venv
+#    source venv/bin/activate  # On Windows: venv\Scripts\activate
+#
+# 2. Install dependencies:
+#    pip install -r requirements.txt
+#
+# 3. Download NLTK datasets:
+#    python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet')"
+#
+# ====================================================================
