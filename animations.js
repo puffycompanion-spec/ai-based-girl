@@ -230,6 +230,54 @@ gsap.utils.toArray(".divider").forEach(div => {
   });
 });
 
+// ===== SOCIAL CARDS — STAGGER =====
+gsap.utils.toArray(".social-card").forEach((card, index) => {
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: "top 88%",
+      toggleActions: "play none none none"
+    },
+    opacity: 0,
+    y: 25,
+    duration: 0.5,
+    delay: index * 0.1,
+    ease: "power2.out"
+  });
+});
+
+// ===== CV SKILLS BLOCKS — STAGGER =====
+gsap.utils.toArray(".cv-skills-block").forEach((block, index) => {
+  gsap.from(block, {
+    scrollTrigger: {
+      trigger: block,
+      start: "top 88%",
+      toggleActions: "play none none none"
+    },
+    opacity: 0,
+    y: 20,
+    duration: 0.6,
+    delay: index * 0.1,
+    ease: "power2.out"
+  });
+});
+
+// ===== FILTER BUTTONS — STAGGER =====
+gsap.utils.toArray(".filter-btn").forEach((btn, index) => {
+  gsap.from(btn, {
+    scrollTrigger: {
+      trigger: ".project-filters",
+      start: "top 88%",
+      toggleActions: "play none none none"
+    },
+    opacity: 0,
+    y: 10,
+    duration: 0.3,
+    delay: index * 0.05,
+    ease: "power2.out"
+  });
+});
+
 // ===== RESPONSIVE ADJUSTMENTS =====
 ScrollTrigger.matchMedia({
   "(max-width: 640px)": function() {
