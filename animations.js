@@ -3,6 +3,9 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Mark body as JS-ready so CSS can safely hide elements for animation
+document.body.classList.add("js-ready");
+
 // ===== SECTION TITLES — SCROLL REVEAL =====
 gsap.utils.toArray(".section-title").forEach(title => {
   gsap.from(title, {
@@ -50,14 +53,14 @@ gsap.utils.toArray(".section-intro").forEach(intro => {
 
 // ===== TIMELINE ITEMS — STAGGERED REVEAL =====
 gsap.utils.toArray(".timeline-item").forEach((item, index) => {
-  gsap.to(item, {
+  gsap.from(item, {
     scrollTrigger: {
       trigger: item,
       start: "top 88%",
       toggleActions: "play none none none"
     },
-    opacity: 1,
-    y: 0,
+    opacity: 0,
+    y: 20,
     duration: 0.7,
     delay: index * 0.05,
     ease: "power2.out"
